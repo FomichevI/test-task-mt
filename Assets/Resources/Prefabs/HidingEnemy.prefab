@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4337780752057114685}
   - component: {fileID: 4337780752057114684}
+  - component: {fileID: 6807700075070431310}
   m_Layer: 7
-  m_Name: SimpleEnemy
+  m_Name: HidingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +52,20 @@ MonoBehaviour:
   _positionPoint: {fileID: 0}
   _hidingSpeed: 15
   _hidingTime: 2
-  _showingTime: 3
+  _showingTime: 1.5
+--- !u!114 &6807700075070431310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337780752057114687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1d108c0bf5b6245a9a50fcd2c5ee5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthPoints: 1
 --- !u!1 &4337780752868717265
 GameObject:
   m_ObjectHideFlags: 0

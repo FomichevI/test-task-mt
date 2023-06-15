@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +13,15 @@ public class GameManager : MonoBehaviour
     private MobCounter _currentMobCounter;
     private int _currentMobCounterIndex = 0;
 
+    private void OnEnable()
+    {
+        CustomEventSystem.DethEnemy.AddListener(EnemyDeath);
+    }
+    private void OnDisable()
+    {
+        CustomEventSystem.DethEnemy.RemoveListener(EnemyDeath);
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +31,33 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         RunToNewPoint();
+    }
+
+    private void EnemyDeath(HidingEnemy enemy)
+    {
+        int commpletedPoints = 0;
+        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) //Ќаходим и убераем убитого врага
+        {
+            if (!sp.IsCompleted)
+            {
+                if (enemy == sp.CurrentEnemy)
+                {
+                    sp.EnemyDeath();
+                    break;
+                }
+            }
+        }
+        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) //ѕровер€ем условие прохождение этапа уровн€
+        {
+            if (sp.IsCompleted)
+            {
+                commpletedPoints++;
+            }
+        }
+        if(commpletedPoints == _currentMobCounter.SpawnPoints.Length) 
+        {
+            RunToNewPoint();
+        }
     }
 
     private void RunToNewPoint()
@@ -39,9 +75,18 @@ public class GameManager : MonoBehaviour
         _playerController.StartRunning(_currentMobCounter.HideoutPoint);
     }
 
-    public void SetNewPointOfView()
+    private void StartSpawnEnemies()
     {
-        _followCamera.StopFallow(_currentMobCounter.PointOfCameraPosition);
+        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints)
+        {
+            sp.StartSpawn();
+        }
+    }
+
+    public void PlayerOnNewPoint() //—обытие, когда игрок добегает до укрыти€
+    {
+        _followCamera.StopFallow(_currentMobCounter.PointOfCameraPosition); 
+        StartSpawnEnemies();
     }
 
     private void Update()

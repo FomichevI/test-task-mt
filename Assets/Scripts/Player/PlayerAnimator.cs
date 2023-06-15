@@ -25,6 +25,11 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetBool("WithHideout", false);
         _currentTimeToHide = _hideTimeAfterFire * 1f;
     }
+    public void Idle()
+    {
+        _animator.SetBool("Fire", false);
+        _animator.SetBool("WithHideout", false);
+    }
 
     private void FixedUpdate()
     {

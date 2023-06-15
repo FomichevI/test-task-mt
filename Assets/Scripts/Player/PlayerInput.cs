@@ -20,7 +20,6 @@ public class PlayerInput : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             CastRay();
-            Debug.Log(hit.point);
             _controller.Fire(hit.point);
         }
     }

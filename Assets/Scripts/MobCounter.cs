@@ -7,4 +7,5 @@ public class MobCounter : MonoBehaviour
     public Transform PointOfView;
     public Transform PointOfCameraPosition;
     public Transform HideoutPoint;
+    public SpawnPoint[] SpawnPoints;
 }

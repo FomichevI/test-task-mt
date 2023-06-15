@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[RequireComponent(typeof(Damageable))]
 public class HidingEnemy : MonoBehaviour
 {
     [SerializeField] private bool _hasHideoutPoint;
@@ -25,6 +26,12 @@ public class HidingEnemy : MonoBehaviour
     {
         OnFixedUpdate();
     }
+    public void SetPoints(Transform pos, Transform hideout)
+    {
+        _hideoutPoint = hideout;
+        _positionPoint = pos;
+    }
+
     protected virtual void OnFixedUpdate()
     {
         if (_hasHideoutPoint)

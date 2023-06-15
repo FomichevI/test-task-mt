@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FollowDynamicCamera : MonoBehaviour
 {
@@ -44,10 +45,10 @@ public class FollowDynamicCamera : MonoBehaviour
         _isFallow = true;
     }
     public void StopFallow(Transform newTrans)
-    { 
+    {
         _isFallow = false;
         _pointTrans = newTrans;
-    }    
+    }
 
     private IEnumerator ShakeCameraCor(float duration, float magnitude, float noize)
     {

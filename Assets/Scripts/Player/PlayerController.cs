@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -59,13 +60,18 @@ public class PlayerController : MonoBehaviour
 
     private void StopRunning()
     {
-        GameManager.Instance.SetNewPointOfView();
+        transform.LookAt(Vector3.right);
+        transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+        GameManager.Instance.PlayerOnNewPoint();
         _isRunning = false;
     }
     public void StartRunning(Transform hideout)
     {
         transform.localScale = new Vector3(1, 1, 1); //разворачиваем в нужную сторону саму модель
+        transform.LookAt(hideout);
+        transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
         NextHideoutPoint = hideout;
         _isRunning = true;
+        _playerAnimator.Idle();
     }
 }

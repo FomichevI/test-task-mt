@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: CameraPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,7 +44,7 @@ GameObject:
   m_Layer: 0
   m_Name: MobCounter
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -79,3 +79,6 @@ MonoBehaviour:
   PointOfView: {fileID: 2501918007252201118}
   PointOfCameraPosition: {fileID: 2501918005214124517}
   HideoutPoint: {fileID: 0}
+  SpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}

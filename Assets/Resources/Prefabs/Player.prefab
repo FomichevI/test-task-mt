@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 860529605}
   - component: {fileID: 860529608}
   - component: {fileID: 860529607}
-  - component: {fileID: 860529606}
   - component: {fileID: 5908291086757124695}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860529604}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.20199966, y: 0.3800001, z: -0.678}
+  m_LocalPosition: {x: 0.9, y: 0.3800001, z: -0.12}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -86,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &860529606
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860529604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5908291086757124695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,10 +108,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2544977952750152347}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -137,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4286310014950177559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.55}
+  m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -274,7 +260,7 @@ Transform:
   m_GameObject: {fileID: 6814286757671076870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.93, y: 0, z: -1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6814286757423283975}
@@ -323,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753765ce25b894b4cae2a9442a51645e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hideTimeAfterFire: 0.5
 --- !u!114 &518172498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753765ce25b894b4cae2a9442a51645e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hideTimeAfterFire: 0.5
 --- !u!95 &518172499
 Animator:
   serializedVersion: 5
