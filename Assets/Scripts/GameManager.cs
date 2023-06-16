@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FollowDynamicCamera _followCamera;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private MobCounter[] _mobCounters;
+    [SerializeField] private Transform _finalPoint;
 
     private MobCounter _currentMobCounter;
     private int _currentMobCounterIndex = 0;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         RunToNewPoint();
     }
 
-    private void EnemyDeath(HidingEnemy enemy)
+    private void EnemyDeath(SimpleEnemy enemy)
     {
         int commpletedPoints = 0;
         foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) //Находим и убераем убитого врага
@@ -62,17 +63,30 @@ public class GameManager : MonoBehaviour
 
     private void RunToNewPoint()
     {
-        if (_currentMobCounter == null)
+        if (_currentMobCounterIndex != _mobCounters.Length)
         {
-            _currentMobCounter = _mobCounters[0];
+            if (_currentMobCounter == null)
+            {
+                _currentMobCounter = _mobCounters[0];
+            }
+            else
+            {
+                _currentMobCounterIndex += 1;
+                _currentMobCounter = _mobCounters[_currentMobCounterIndex];
+            }
+            _followCamera.StartFallow();
+            _playerController.StartRunning(_currentMobCounter.HideoutPoint);
         }
         else
         {
-            _currentMobCounterIndex += 1;
-            _currentMobCounter = _mobCounters[_currentMobCounterIndex];
+            LevelCompleted();
         }
+    }
+
+    private void LevelCompleted()
+    {
         _followCamera.StartFallow();
-        _playerController.StartRunning(_currentMobCounter.HideoutPoint);
+        _playerController.StartRunning(_finalPoint);
     }
 
     private void StartSpawnEnemies()

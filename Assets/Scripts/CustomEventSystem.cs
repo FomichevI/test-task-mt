@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventWithHidingEnemy : UnityEvent<HidingEnemy> { }
+public class EventWithSimpleEnemy : UnityEvent<SimpleEnemy> { }
 public class CustomEventSystem : MonoBehaviour
 {
-    public static EventWithHidingEnemy DethEnemy = new EventWithHidingEnemy();
+    public static EventWithSimpleEnemy DethEnemy = new EventWithSimpleEnemy();
 
 }
