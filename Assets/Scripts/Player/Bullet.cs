@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, Time.fixedDeltaTime* _moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, Time.fixedDeltaTime * _moveSpeed);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,5 +21,4 @@ public class Bullet : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
 }

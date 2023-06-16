@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(PlayerAnimator))]
 [RequireComponent(typeof(PlayerInput))]
@@ -13,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _weaponGo;
     private PlayerAnimator _playerAnimator;
     private IWeapon _weapon;
-    private bool _isRunning = false;    
+    private bool _isRunning = false;
 
     private void Awake()
     {
@@ -22,10 +18,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
         if (_isRunning)
         {
-            Debug.Log("run");
             transform.position = Vector3.MoveTowards(transform.position, NextHideoutPoint.position, _moveSpeed * Time.fixedDeltaTime);
         }
         if (Vector3.Magnitude(transform.position - NextHideoutPoint.position) == 0 && _isRunning)
@@ -38,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isRunning)
         {
-            _weapon.Fire((target- _weaponGo.transform.position).normalized);
+            _weapon.Fire((target - _weaponGo.transform.position).normalized);
             _playerAnimator.FireWithMove();
         }
         else
@@ -60,8 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void StopRunning()
     {
-        transform.LookAt(Vector3.right);
-        transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
+        transform.rotation = Quaternion.Euler(Vector3.zero);
         GameManager.Instance.PlayerOnNewPoint();
         _isRunning = false;
     }

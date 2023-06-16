@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private MobCounter _currentMobCounter;
     private int _currentMobCounterIndex = 0;
+    private bool _isLevelCompleted;
 
     private void OnEnable()
     {
@@ -55,7 +53,7 @@ public class GameManager : MonoBehaviour
                 commpletedPoints++;
             }
         }
-        if(commpletedPoints == _currentMobCounter.SpawnPoints.Length) 
+        if (commpletedPoints == _currentMobCounter.SpawnPoints.Length)
         {
             RunToNewPoint();
         }
@@ -63,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void RunToNewPoint()
     {
-        if (_currentMobCounterIndex != _mobCounters.Length)
+        if (_currentMobCounterIndex != _mobCounters.Length - 1)
         {
             if (_currentMobCounter == null)
             {
@@ -87,6 +85,7 @@ public class GameManager : MonoBehaviour
     {
         _followCamera.StartFallow();
         _playerController.StartRunning(_finalPoint);
+        _isLevelCompleted = true;
     }
 
     private void StartSpawnEnemies()
@@ -97,18 +96,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayerOnNewPoint() //Событие, когда игрок добегает до укрытия
+    public void PlayerOnNewPoint() //Событие, когда игрок добегает до новой точки
     {
-        _followCamera.StopFallow(_currentMobCounter.PointOfCameraPosition); 
-        StartSpawnEnemies();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (!_isLevelCompleted)
         {
-            RunToNewPoint();
+            _followCamera.StopFallow(_currentMobCounter.PointOfCameraPosition);
+            StartSpawnEnemies();
         }
     }
-
 }

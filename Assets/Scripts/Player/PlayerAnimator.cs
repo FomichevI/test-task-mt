@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -33,13 +31,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_currentTimeToHide > 0)
+        if (_currentTimeToHide > 0)
         {
             _currentTimeToHide -= Time.fixedDeltaTime;
         }
         if (_currentTimeToHide < 0)
+        {
             _animator.SetBool("Fire", false);
-
+        }
     }
-
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [RequireComponent(typeof(Damageable))]
 public class MovingEnemy : SimpleEnemy
@@ -45,7 +42,7 @@ public class MovingEnemy : SimpleEnemy
     protected virtual void MovingPosition1()
     {
         _in2position = true;
-        _currentTimeInPosition2 = _waitTime * Random.Range(0.5f,1.5f);
+        _currentTimeInPosition2 = _waitTime * Random.Range(0.5f, 1.5f);
         if (_hasAnimation)
             _animator.SetTrigger("Jump");
     }

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//Просто противник, стоящий на месте. Основа для будущих противников
 public class SimpleEnemy : MonoBehaviour
 {
     protected bool _hasSupportPoint;

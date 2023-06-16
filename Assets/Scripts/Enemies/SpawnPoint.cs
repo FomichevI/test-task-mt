@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-enum EnemyType {Simpe, Hiding, Jumping}
+enum EnemyType { Simpe, Hiding, Jumping }
 
+//Содержит информацию о точке спавна, текущем противники на ней, задержкой между спавном. 
+//Служит для респавна противников, определения того, сколько их осталось и на текущей точке.
 public class SpawnPoint : MonoBehaviour
 {
-    public SimpleEnemy CurrentEnemy;
+    [HideInInspector] public SimpleEnemy CurrentEnemy;
     public bool IsCompleted { get { return _isCompleted; } }
     private bool _isCompleted = false;
     [SerializeField] private Transform _mainPoint;
