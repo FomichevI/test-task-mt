@@ -1380,6 +1380,8 @@ MonoBehaviour:
   _playerTrans: {fileID: 518172495}
   _followSpeed: 2
   _rotationSpeed: 1
+  _raicingMod: 0
+  _shakeCamera: 0
   _duration: 7
   _magnitude: 1.5
   _noize: 6

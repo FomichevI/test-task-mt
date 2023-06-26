@@ -6,7 +6,9 @@ public class FollowDynamicCamera : MonoBehaviour
     [SerializeField] private Transform _playerTrans;
     [SerializeField] private float _followSpeed;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private bool _raicingMod = false;
     [Header("Тряска камеры")]
+    [SerializeField] private bool _shakeCamera = false;
     [SerializeField] private float _duration = 1;
     [SerializeField] private float _magnitude = 2;
     [SerializeField] private float _noize = 2;
@@ -20,6 +22,7 @@ public class FollowDynamicCamera : MonoBehaviour
     {
         _offset = transform.position - _playerTrans.position;
         _rotationOffset = transform.rotation * _playerTrans.rotation;
+        _noizeOffset = Vector3.zero;
         StartCoroutine(ShakeCameraCor(_duration, _magnitude, _noize));
     }
 
@@ -29,7 +32,10 @@ public class FollowDynamicCamera : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, _playerTrans.position + _offset + _noizeOffset,
                _followSpeed * Time.fixedDeltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, _playerTrans.rotation * _rotationOffset, _rotationSpeed * Time.fixedDeltaTime);
+            if (_raicingMod)
+                transform.rotation = Quaternion.Lerp(transform.rotation, _playerTrans.rotation, _rotationSpeed * Time.fixedDeltaTime);
+            else
+                transform.rotation = Quaternion.Lerp(transform.rotation, _playerTrans.rotation * _rotationOffset, _rotationSpeed * Time.fixedDeltaTime);
         }
         else
         {

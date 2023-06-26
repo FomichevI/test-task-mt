@@ -12,9 +12,9 @@ public class Damageable : MonoBehaviour
     }
     private void Death()
     {
-        if (gameObject.GetComponent<SimpleEnemy>() != null)
+        if (gameObject.TryGetComponent(out SimpleEnemy enemy))
         {
-            CustomEventSystem.DethEnemy.Invoke(gameObject.GetComponent<SimpleEnemy>());
+            CustomEventSystem.DeathEnemy.Invoke(gameObject.GetComponent<SimpleEnemy>());
             Destroy(gameObject);
         }
     }

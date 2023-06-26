@@ -4,9 +4,10 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private LayerMask _fireLayerMask;
     private PlayerController _controller;
-    //определение позиции мыши
-    private Ray ray;
-    private RaycastHit hit;
+    // Для определения позиции мыши
+    private Ray _ray;
+    private RaycastHit _hit;
+    private float _distance = 100f;
 
     private void Awake()
     {
@@ -18,12 +19,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             CastRay();
-            _controller.Fire(hit.point);
+            _controller.Fire(_hit.point);
         }
     }
     void CastRay()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit, 100, _fireLayerMask);
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(_ray, out _hit, _distance, _fireLayerMask);
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
     [SerializeField] private FollowDynamicCamera _followCamera;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private MobCounter[] _mobCounters;
@@ -14,19 +13,14 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CustomEventSystem.DethEnemy.AddListener(EnemyDeath);
+        CustomEventSystem.DeathEnemy.AddListener(EnemyDeath);
+        CustomEventSystem.PlayerOnNewPoint.AddListener(PlayerOnNewPoint);
     }
     private void OnDisable()
     {
-        CustomEventSystem.DethEnemy.RemoveListener(EnemyDeath);
+        CustomEventSystem.DeathEnemy.RemoveListener(EnemyDeath);
+        CustomEventSystem.PlayerOnNewPoint.RemoveListener(PlayerOnNewPoint);
     }
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }
-
     private void Start()
     {
         RunToNewPoint();
@@ -35,7 +29,8 @@ public class GameManager : MonoBehaviour
     private void EnemyDeath(SimpleEnemy enemy)
     {
         int commpletedPoints = 0;
-        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) //Находим и убераем убитого врага
+        //Находим и убераем убитого врага
+        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) 
         {
             if (!sp.IsCompleted)
             {
@@ -46,7 +41,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) //Проверяем условие прохождение этапа уровня
+        //Проверяем условие прохождение этапа уровня
+        foreach (SpawnPoint sp in _currentMobCounter.SpawnPoints) 
         {
             if (sp.IsCompleted)
             {
@@ -96,7 +92,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayerOnNewPoint() //Событие, когда игрок добегает до новой точки
+    //Событие, небходимое для переключения камеры с игрока на новую точку
+    public void PlayerOnNewPoint() 
     {
         if (!_isLevelCompleted)
         {

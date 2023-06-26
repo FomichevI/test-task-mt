@@ -42,12 +42,14 @@ public class PlayerController : MonoBehaviour
             //Разворачиваем персонажа в зависимости от того, с какой стороны укрытия нужно стрелять и запускаем соответствующую анимацию
             if (target.x - transform.position.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1); //Разворачиваем в нужную сторону саму модель
+                //Разворачиваем в нужную сторону саму модель
+                transform.localScale = new Vector3(-1, 1, 1); 
                 _playerAnimator.Look();
             }
             else
             {
-                transform.localScale = new Vector3(1, 1, 1); //Разворачиваем в нужную сторону саму модель
+                //Разворачиваем в нужную сторону саму модель
+                transform.localScale = new Vector3(1, 1, 1); 
                 _playerAnimator.Look();
             }
         }
@@ -56,12 +58,13 @@ public class PlayerController : MonoBehaviour
     private void StopRunning()
     {
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        GameManager.Instance.PlayerOnNewPoint();
+        CustomEventSystem.PlayerOnNewPoint.Invoke();
         _isRunning = false;
     }
     public void StartRunning(Transform hideout)
     {
-        transform.localScale = new Vector3(1, 1, 1); //разворачиваем в нужную сторону саму модель
+        //Разворачиваем в нужную сторону саму модель
+        transform.localScale = new Vector3(1, 1, 1); 
         transform.LookAt(hideout);
         transform.rotation *= Quaternion.FromToRotation(Vector3.right, Vector3.forward);
         NextHideoutPoint = hideout;
